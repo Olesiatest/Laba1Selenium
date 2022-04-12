@@ -15,8 +15,7 @@ public class Test1 extends Base {
         String permAddress = "test,12";
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
         try {
-            WebElement cardElements = driver.findElement(
-                    By.xpath("//h5[contains(text(), \"Elements\")]"));
+            WebElement cardElements = driver.findElement(By.xpath("//h5[contains(text(), \"Elements\")]"));
             cardElements.click();
 
             WebElement textBoxInElement = driver.findElement(

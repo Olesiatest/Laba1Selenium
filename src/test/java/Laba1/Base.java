@@ -19,7 +19,7 @@ public class Base {
     Actions action;
     WebDriverWait wait;
 
-    @BeforeMethod
+    @BeforeClass
     public void driverSettingOnSite() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
