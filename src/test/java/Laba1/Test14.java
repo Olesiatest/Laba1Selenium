@@ -16,7 +16,6 @@ public class Test14 extends Base{
     public void practiceForm() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
 
-        try {
             ((JavascriptExecutor) driver).executeScript("return document.getElementById('fixedban').remove();");
             WebElement cardForms = driver.findElement(By.xpath("//h5[contains(text(), 'Forms')]"));
             action.click(cardForms).build().perform();
@@ -39,8 +38,6 @@ public class Test14 extends Base{
             String currentDate = formatForDate.format(new Date());
             Assertions.assertThat(currentDate).as("Не верна дата").isEqualTo(dateOfBirthInput);
 
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}
+

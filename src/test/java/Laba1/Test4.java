@@ -8,11 +8,11 @@ import org.testng.annotations.Test;
 
 public class Test4 extends Base{
     @Test
-    public void windows() {
+    public void windows() throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement cardAlertFrameWindows = driver.findElement(
-                    By.xpath("//h5[contains(text(), \"Alerts, Frame & Windows\")]"));
+                    By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]"));
             action.click(cardAlertFrameWindows).build().perform();
 
             ((JavascriptExecutor) driver).executeScript("scroll(0,100)");
@@ -37,9 +37,5 @@ public class Test4 extends Base{
             String sempleHeandingText = driver.findElement(By.xpath("//h1[@id='sampleHeading']")).getText();
             String expectedHeadingText = "This is a sample page";
             Assertions.assertThat(expectedHeadingText).as("Не корректный текст").isEqualTo(sempleHeandingText);
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
-
-        }
+              }
     }
-}

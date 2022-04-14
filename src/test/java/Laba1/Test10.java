@@ -12,7 +12,7 @@ public class Test10 extends Base{
     @Test
     public void tabs() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement cardWidget = driver.findElement(By.xpath("//h5[contains(text(), 'Widgets')]"));
             action.click(cardWidget).build().perform();
 
@@ -29,8 +29,6 @@ public class Test10 extends Base{
                 }else assert tab.getAttribute("class").contains("disabled");
             }
 
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
-        }
     }
-}
+    }
+

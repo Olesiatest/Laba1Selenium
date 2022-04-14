@@ -10,9 +10,9 @@ public class Test7 extends Base{
     @Test
     public void frames() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement cardAlertFrameWindows = driver.findElement(
-                    By.xpath("//h5[contains(text(), \"Alerts, Frame & Windows\")]"));
+                    By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]"));
             action.click(cardAlertFrameWindows).build().perform();
 
             ((JavascriptExecutor) driver).executeScript("scroll(0,200)");
@@ -21,13 +21,12 @@ public class Test7 extends Base{
             action.click(frameWindowButton).build().perform();
 
             WebElement frameAlert = driver.findElement(By.xpath("//iframe[@id='frame1']"));
-            driver.switchTo().frame(frameAlert);//**переключення до iframe
+            driver.switchTo().frame(frameAlert);
 
             String textInFrameAlertsFrameWindow = driver.findElement(By.xpath("//h1[@id='sampleHeading']")).getText();
             String expectedTextInFrame = "This is a sample page";
             Assertions.assertThat(expectedTextInFrame).as("Не корректный результат").isEqualTo(textInFrameAlertsFrameWindow);
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
+
         }
     }
-}
+

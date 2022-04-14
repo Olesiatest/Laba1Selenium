@@ -11,8 +11,8 @@ public class Test11 extends Base{
     @Test
     public void selectMenu() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
-            WebElement cardWidget = driver.findElement(By.xpath("//h5[contains(text(), 'Widgets')]"));
+
+        WebElement cardWidget = driver.findElement(By.xpath("//h5[contains(text(), 'Widgets')]"));
             action.click(cardWidget).build().perform();
             ((JavascriptExecutor) driver).executeScript("scroll(0,700)");
             WebElement selectMenuInWidget = driver.findElement(By.xpath("//div[@class='element-list collapse show']//li[@id='item-8']"));
@@ -23,8 +23,7 @@ public class Test11 extends Base{
             String chooseColorBox = select.getFirstSelectedOption().getText();
             Assertions.assertThat("White").as("Выбран не правильный вариант").isEqualTo(chooseColorBox);
 
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
+
         }
     }
-}
+

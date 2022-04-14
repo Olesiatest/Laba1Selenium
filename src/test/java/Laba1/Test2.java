@@ -11,9 +11,8 @@ public class Test2 extends Base{
     @Test
     public void checkBox() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
             WebElement cardElements = driver.findElement(
-                    By.xpath("//h5[contains(text(), \"Elements\")]"));
+                    By.xpath("//h5[contains(text(), 'Elements')]"));
             cardElements.click();
 
             WebElement checkBoxElement = driver.findElement(
@@ -33,14 +32,13 @@ public class Test2 extends Base{
             selectWordFile.click();
 
             WebElement wordFile = driver.findElement(
-                    By.xpath("//span[@class='text-success']"));//*<span class='text-success'> wordFile</span>
-            String wordFileNew = wordFile.getText();//*wordFile- беремо текст зі зміної
+                    By.xpath("//span[@class='text-success']"));
+            String wordFileNew = wordFile.getText();
             String expctedResult = "wordFile";
             assertEquals(expctedResult, wordFileNew);
-            //* Очікуваний результат,актуальний результат;
 
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
+
         }
     }
-}
+
+

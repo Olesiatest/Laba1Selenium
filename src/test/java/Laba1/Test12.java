@@ -12,7 +12,7 @@ public class Test12 extends Base{
     @Test
     public void selectAble() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement cardWidget = driver.findElement(By.xpath("//h5[contains(text(), 'Widgets')]"));
             action.click(cardWidget).build().perform();
             ((JavascriptExecutor) driver).executeScript("scroll(0,700)");
@@ -32,9 +32,6 @@ public class Test12 extends Base{
             String selected = selectOne.findElement(By.xpath("//div[contains(@class, 'singleValue')]")).getText();
             assertEquals("Ms.", selected);
 
-
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}
+

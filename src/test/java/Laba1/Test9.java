@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 
 public class Test9 extends Base{
     @Test
-    public void progressBar() {
+    public void progressBar() throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement cardWidget = driver.findElement(By.xpath("//h5[contains(text(), 'Widgets')]"));
             action.click(cardWidget).build().perform();
 
@@ -38,8 +38,7 @@ public class Test9 extends Base{
             resetButtonProgressBar.click();
             ariaValuenow = progressBar.getAttribute("aria-valuenow");
             Assertions.assertThat(Integer.parseInt(ariaValuenow)).as("Прогрес бар равен 0").isEqualTo(0);
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
+
         }
     }
-}
+

@@ -11,9 +11,9 @@ public class Test5 extends Base{
     @Test
     public void alerts() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement cardAlertFrameWindows = driver.findElement(
-                    By.xpath("//h5[contains(text(), \"Alerts, Frame & Windows\")]"));
+                    By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]"));
             action.click(cardAlertFrameWindows).build().perform();
 
             ((JavascriptExecutor) driver).executeScript("scroll(0,200)");
@@ -24,14 +24,12 @@ public class Test5 extends Base{
 
             WebElement clickMeButtonInAlertWindow = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='alertButton']")));
             action.click(clickMeButtonInAlertWindow).build().perform();
-            wait.until(ExpectedConditions.alertIsPresent());//*Ожидание елемента на протяжении 10 с.
+            wait.until(ExpectedConditions.alertIsPresent());
             String actualTextInAlert = driver.switchTo().alert().getText();
             String expectedTextInAlert = "You clicked a button";
             Assertions.assertThat(expectedTextInAlert).as("Не верный результат").isEqualTo(actualTextInAlert);
             driver.switchTo().alert().accept();//*Закриття Алерта(модальне вікно).
 
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}
+

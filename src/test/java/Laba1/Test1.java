@@ -14,8 +14,8 @@ public class Test1 extends Base {
         String currentAddress = "qwerty1256,12";
         String permAddress = "test,12";
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
-            WebElement cardElements = driver.findElement(By.xpath("//h5[contains(text(), \"Elements\")]"));
+
+            WebElement cardElements = driver.findElement(By.xpath("//h5[contains(text(), 'Elements')]"));
             cardElements.click();
 
             WebElement textBoxInElement = driver.findElement(
@@ -69,8 +69,6 @@ public class Test1 extends Base {
             assertEquals(mail, emailOut);
             assertEquals(currentAddress, currentOut);
             assertEquals(permAddress, permanentOut);
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
+
         }
     }
-}

@@ -8,11 +8,11 @@ import org.testng.annotations.Test;
 
 public class Test3 extends Base {
     @Test
-    public void button() {
+    public void button() throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement cardElements = driver.findElement(
-                    By.xpath("//h5[contains(text(), \"Elements\")]"));
+                    By.xpath("//h5[contains(text(), 'Elements')]"));
             action.click(cardElements).build().perform();
 
             ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
@@ -27,11 +27,6 @@ public class Test3 extends Base {
             String expectedTextClickMeButton = "You have done a dynamic click";
             String dynamicClickMessageText = driver.findElement(By.xpath("//p[@id='dynamicClickMessage']")).getText();
             Assertions.assertThat(expectedTextClickMeButton).as("Не соответствует результат").isEqualTo(dynamicClickMessageText);
-//            WebElement rightClickMe = driver.findElement(By.xpath("//button[@id='rightClickBtn']"));
-//            action.contextClick(rightClickMe).build().perform();
-//            String expectedTextRightClick="You have done a dynamic click";
-//            String actualTextRightClickResult = driver.findElement(By.xpath("//p[@id='rightClickMessage']")).getText();
-//            Assertions.assertThat(expectedTextRightClick).as("Не соответствует результат").isEqualTo(actualTextRightClickResult);//**помилковий тест.
 
             ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
             WebElement doubleClickButton = driver.findElement(By.xpath("//button[@id='doubleClickBtn']"));//** <button id="doubleClickBtn">Double Click Me</button>
@@ -39,8 +34,6 @@ public class Test3 extends Base {
             String expectedDoubleClickButton = "You have done a double click";
             String actualDoubleClickButton = driver.findElement(By.xpath("//p[@id='doubleClickMessage']")).getText();
             Assertions.assertThat(expectedDoubleClickButton).as("Не соответствует результат").isEqualTo(actualDoubleClickButton);
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
+
         }
     }
-}

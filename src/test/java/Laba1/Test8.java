@@ -12,9 +12,9 @@ public class Test8 extends Base{
     @Test
     public void modals() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement cardAlertFrameWindows = driver.findElement(
-                    By.xpath("//h5[contains(text(), \"Alerts, Frame & Windows\")]"));
+                    By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]"));
             action.click(cardAlertFrameWindows).build().perform();
 
             ((JavascriptExecutor) driver).executeScript("scroll(0,400)");
@@ -41,10 +41,8 @@ public class Test8 extends Base{
                 fail("Модальное окно открыто");
             }
 
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
 
 
     }
-}
+

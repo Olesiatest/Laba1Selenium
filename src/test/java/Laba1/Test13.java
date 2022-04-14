@@ -9,7 +9,7 @@ public class Test13 extends Base{
     @Test
     public void dynamicProperties() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement cardInteractions = driver.findElement(By.xpath("//h5[contains(text(), 'Interactions')]"));
             action.click(cardInteractions).build().perform();
             ((JavascriptExecutor) driver).executeScript("scroll(0,400)");
@@ -27,8 +27,6 @@ public class Test13 extends Base{
             assert first.getAttribute("class").contains("active");
             assert second.getAttribute("class").contains("active");
 
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}
+

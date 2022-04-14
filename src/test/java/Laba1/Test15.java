@@ -16,7 +16,7 @@ public class Test15 extends Base{
     public void practiceFormSecond() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
+
             WebElement widgetForms = driver.findElement(By.xpath("//h5[contains(text(), 'Widgets')]"));
             action.click(widgetForms).build().perform();
 
@@ -39,9 +39,5 @@ public class Test15 extends Base{
             WebElement viol = colorsMenu.findElement(By.xpath("//div[contains(@class, 'auto-complete__option') and contains(text(), 'Voilet')]"));
             viol.click();
 
-
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}
