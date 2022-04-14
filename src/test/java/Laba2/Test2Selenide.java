@@ -13,8 +13,7 @@ public class Test2Selenide extends BaseSelenide {
     @Test
     public void checkBox2() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
-            $(By.xpath("//h5[contains(text(), \"Elements\")]")).click();
+            $(By.xpath("//h5[contains(text(), 'Elements')]")).click();
 
             $(By.xpath("//li[@id='item-1']")).click();
 
@@ -27,10 +26,7 @@ public class Test2Selenide extends BaseSelenide {
             String wordFileNew = $(".text-success").getText();
             String expctedResult = "wordFile";
             assertEquals(expctedResult, wordFileNew);
-            //* Очікуваний результат,актуальний результат;
 
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}
+

@@ -12,10 +12,7 @@ import static org.testng.AssertJUnit.fail;
 public class Test8Selenide extends BaseSelenide{
     @Test
     public void modals() {
-        try {
-
-            $(By.xpath("//h5[contains(text(), \"Alerts, Frame & Windows\")]")).scrollIntoView(true).click();
-
+            $(By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]")).scrollIntoView(true).click();
             $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-4']")).scrollIntoView(true).click();
 
             $("#showSmallModal").click();
@@ -34,9 +31,5 @@ public class Test8Selenide extends BaseSelenide{
             if (isExistClassModalOpen.equals("modal-open")) {
                 fail("Модальное окно открыто");
             }
-
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}

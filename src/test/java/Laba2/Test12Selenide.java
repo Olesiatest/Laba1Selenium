@@ -14,7 +14,6 @@ import static org.testng.AssertJUnit.assertEquals;
 public class Test12Selenide extends BaseSelenide{
     @Test
     public void selectAble() {
-        try {
 
             $(By.xpath("//h5[contains(text(), 'Widgets')]")).scrollIntoView(true).click();
             $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-8']")).scrollIntoView(true).click();
@@ -28,9 +27,5 @@ public class Test12Selenide extends BaseSelenide{
             String selected = selectOne.find(By.xpath("//div[contains(@class, 'singleValue')]")).getText();
             assertEquals("Ms.",  selected);
 
-
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}

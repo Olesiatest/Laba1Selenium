@@ -11,8 +11,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class Test9Selenide extends BaseSelenide{
     @Test
-    public void progressBar() {
-        try {
+    public void progressBar() throws InterruptedException {
+
             $(By.xpath("//h5[contains(text(), 'Widgets')]")).scrollIntoView(true).click();
 
            $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-4']")).scrollIntoView(true).click();
@@ -36,10 +36,7 @@ public class Test9Selenide extends BaseSelenide{
 
             ariaValuenow = progressBar.attr("aria-valuenow");
             Assertions.assertThat(Integer.parseInt(ariaValuenow)).as("Прогрес бар равен 0").isEqualTo(0);
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}
 
 

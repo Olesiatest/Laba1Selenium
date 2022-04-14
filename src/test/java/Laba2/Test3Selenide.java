@@ -12,8 +12,7 @@ public class Test3Selenide extends BaseSelenide {
     @Test
     public void button2() {
         ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-        try {
-            $(By.xpath("//h5[contains(text(), \"Elements\")]")).click();
+            $(By.xpath("//h5[contains(text(), 'Elements')]")).click();
 
             ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
 
@@ -32,8 +31,6 @@ public class Test3Selenide extends BaseSelenide {
 
             String actualDoubleClickButton =$("#doubleClickMessage").getText();
             Assertions.assertThat(expectedDoubleClickButton).as("Не соответствует результат").isEqualTo(actualDoubleClickButton);
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
-        }
+         }
     }
-}
+

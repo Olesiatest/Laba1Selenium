@@ -18,7 +18,6 @@ public class Test15Selenide extends BaseSelenide{
 
     @Test
     public void practiceFormSecond() {
-        try {
            $(By.xpath("//h5[contains(text(), 'Widgets')]")).scrollIntoView(true).click();
            $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-1']")).scrollIntoView(true).click();
 
@@ -34,11 +33,8 @@ public class Test15Selenide extends BaseSelenide{
             }
             colorsMenu.find(By.xpath("//div[contains(@class, 'auto-complete__option') and contains(text(), 'Voilet')]")).click();
 
-
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-}
+
 
 

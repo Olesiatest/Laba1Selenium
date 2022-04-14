@@ -18,8 +18,7 @@ public class Test1Selenide extends BaseSelenide {
         String curAdd = "testCurAdd";
         String perAdd = "testPerAdd";
 
-        try {
-            $(By.xpath("//h5[contains(text(), \"Elements\")]")).scrollIntoView(true).click();
+            $(By.xpath("//h5[contains(text(), 'Elements')]")).scrollIntoView(true).click();
             $("#item-0").click();
 
             $("#userName").setValue(name);
@@ -44,8 +43,5 @@ public class Test1Selenide extends BaseSelenide {
             Assertions.assertThat(curAdd).isEqualTo(outCurAddress);
             Assertions.assertThat(perAdd).isEqualTo(outPerAddress);
 
-        }catch (Exception e) {
-            fail("Error ", e.getMessage());
         }
     }
-}

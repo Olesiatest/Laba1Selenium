@@ -12,7 +12,6 @@ public class Test13Selenide extends BaseSelenide{
 
     @Test
     public void dynamicProperties() {
-        try {
 
             $(By.xpath("//h5[contains(text(), 'Interactions')]")).scrollIntoView(true).click();
             $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-1']")).scrollIntoView(true).click();
@@ -25,9 +24,5 @@ public class Test13Selenide extends BaseSelenide{
             assert first.attr("class").contains("active");
             assert second.attr("class").contains("active");
 
-        }catch (Exception e) {
-            System.out.println("NotPassed: " + e.getMessage());
         }
     }
-
-}
