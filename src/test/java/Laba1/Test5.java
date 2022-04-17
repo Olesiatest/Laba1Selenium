@@ -7,29 +7,31 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
-public class Test5 extends Base{
-    @Test
-    public void alerts() {
-        ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
+public class Test5 extends Base {
 
-            WebElement cardAlertFrameWindows = driver.findElement(
-                    By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]"));
-            action.click(cardAlertFrameWindows).build().perform();
+  @Test
+  public void alerts() {
+    ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
 
-            ((JavascriptExecutor) driver).executeScript("scroll(0,200)");
+    WebElement cardAlertFrameWindows = driver.findElement(
+        By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]"));
+    action.click(cardAlertFrameWindows).build().perform();
 
-            WebElement alertWindowButton = driver.findElement(
-                    By.xpath("//div[@class='element-list collapse show']//li[@id='item-1']"));
-            action.click(alertWindowButton).build().perform();
+    ((JavascriptExecutor) driver).executeScript("scroll(0,200)");
 
-            WebElement clickMeButtonInAlertWindow = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='alertButton']")));
-            action.click(clickMeButtonInAlertWindow).build().perform();
-            wait.until(ExpectedConditions.alertIsPresent());
-            String actualTextInAlert = driver.switchTo().alert().getText();
-            String expectedTextInAlert = "You clicked a button";
-            Assertions.assertThat(expectedTextInAlert).as("Не верный результат").isEqualTo(actualTextInAlert);
-            driver.switchTo().alert().accept();//*Закриття Алерта(модальне вікно).
+    WebElement alertWindowButton = driver.findElement(
+        By.xpath("//div[@class='element-list collapse show']//li[@id='item-1']"));
+    action.click(alertWindowButton).build().perform();
 
-        }
-    }
+    WebElement clickMeButtonInAlertWindow = wait.until(
+        ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='alertButton']")));
+    action.click(clickMeButtonInAlertWindow).build().perform();
+    wait.until(ExpectedConditions.alertIsPresent());
+    String actualTextInAlert = driver.switchTo().alert().getText();
+    String expectedTextInAlert = "You clicked a button";
+    Assertions.assertThat(expectedTextInAlert).as("Не верный результат")
+        .isEqualTo(actualTextInAlert);
+    driver.switchTo().alert().accept();//*Закриття Алерта(модальне вікно).
+  }
+}
 

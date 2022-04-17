@@ -7,38 +7,40 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class Test2 extends Base{
-    @Test
-    public void checkBox() {
-        ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-            WebElement cardElements = driver.findElement(
-                    By.xpath("//h5[contains(text(), 'Elements')]"));
-            cardElements.click();
+public class Test2 extends Base {
 
-            WebElement checkBoxElement = driver.findElement(
-                    By.xpath("//li[@id='item-1']"));
-            checkBoxElement.click();
+  @Test
+  public void checkBox() {
+    ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
+    WebElement cardElements = driver.findElement(
+        By.xpath("//h5[contains(text(), 'Elements')]"));
+    cardElements.click();
 
-            WebElement uncollapseHome = driver.findElement(
-                    By.xpath("//ol/li//button"));
-            uncollapseHome.click();
+    WebElement checkBoxElement = driver.findElement(
+        By.xpath("//li[@id='item-1']"));
+    checkBoxElement.click();
 
-            WebElement unCollapseDownloadHome = driver.findElement(
-                    By.xpath("//ol//ol/li[last()]//button"));
-            unCollapseDownloadHome.click();
+    WebElement uncollapseHome = driver.findElement(
+        By.xpath("//ol/li//button"));
+    uncollapseHome.click();
 
-            WebElement selectWordFile = driver.findElement(
-                    By.xpath("//label[@for='tree-node-wordFile']"));
-            selectWordFile.click();
+    WebElement unCollapseDownloadHome = driver.findElement(
+        By.xpath("//ol//ol/li[last()]//button"));
+    unCollapseDownloadHome.click();
 
-            WebElement wordFile = driver.findElement(
-                    By.xpath("//span[@class='text-success']"));
-            String wordFileNew = wordFile.getText();
-            String expctedResult = "wordFile";
-            assertEquals(expctedResult, wordFileNew);
+    WebElement selectWordFile = driver.findElement(
+        By.xpath("//label[@for='tree-node-wordFile']"));
+    selectWordFile.click();
+
+    WebElement wordFile = driver.findElement(
+        By.xpath("//span[@class='text-success']"));
+    String wordFileNew = wordFile.getText();
+    String expctedResult = "wordFile";
+    assertEquals(expctedResult, wordFileNew);
 
 
-        }
-    }
+  }
+}
+
 
 

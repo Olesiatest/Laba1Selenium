@@ -11,21 +11,25 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.$;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class Test12Selenide extends BaseSelenide{
-    @Test
-    public void selectAble() {
+public class Test12Selenide extends BaseSelenide {
 
-            $(By.xpath("//h5[contains(text(), 'Widgets')]")).scrollIntoView(true).click();
-            $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-8']")).scrollIntoView(true).click();
-            $("#selectOne").scrollIntoView(true).click();
+  @Test
+  public void selectAble() {
 
-            $("#selectOne").scrollIntoView(true).shouldBe(Condition.visible).click();
+    $(By.xpath("//h5[contains(text(), 'Widgets')]")).scrollIntoView(true).click();
+    $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-8']")).scrollIntoView(true)
+        .click();
+    $("#selectOne").scrollIntoView(true).click();
 
-           SelenideElement selectOne= $(By.xpath("//div[contains(text(), 'Ms.') and not(contains(@class, 'singleValue'))]"));
-           selectOne.scrollIntoView(true).shouldBe(Condition.visible).click();
+//            $("#selectOne").shouldBe(Condition.visible).click();
 
-            String selected = selectOne.find(By.xpath("//div[contains(@class, 'singleValue')]")).getText();
-            assertEquals("Ms.",  selected);
+    SelenideElement selectOne = $(
+        By.xpath("//div[contains(text(), 'Ms.') and not(contains(@class, 'singleValue'))]"));
+    selectOne.shouldBe(Condition.visible).scrollIntoView("Ms.").click();
 
-        }
-    }
+    String selected = selectOne.find(By.xpath("//div[contains(@class, 'singleValue')]")).getText();
+    assertEquals("Ms.", selected);
+
+  }
+}
+

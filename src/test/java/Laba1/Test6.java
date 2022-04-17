@@ -7,29 +7,31 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
-public class Test6 extends Base{
-    @Test
-    public void alertsSecond() {
-        ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
+public class Test6 extends Base {
 
-        WebElement cardAlertFrameWindows = driver.findElement(
-                    By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]"));
-            action.click(cardAlertFrameWindows).build().perform();
+  @Test
+  public void alertsSecond() {
+    ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
 
-            ((JavascriptExecutor) driver).executeScript("scroll(0,200)");
-            WebElement alertWindowButton = driver.findElement(
-                    By.xpath("//div[@class='element-list collapse show']//li[@id='item-1']"));
-            action.click(alertWindowButton).build().perform();
+    WebElement cardAlertFrameWindows = driver.findElement(
+        By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]"));
+    action.click(cardAlertFrameWindows).build().perform();
 
-            WebElement clickMeButtonInAlertWindowAfterFiveMinutes = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='timerAlertButton']")));
-            action.click(clickMeButtonInAlertWindowAfterFiveMinutes).build().perform();
-            wait.until(ExpectedConditions.alertIsPresent());
-            String actualTextInAlertSecond = driver.switchTo().alert().getText();
-            String expectedTextInAlertSecond = "This alert appeared after 5 seconds";
-            Assertions.assertThat(expectedTextInAlertSecond).as("Не верный результат").isEqualTo(actualTextInAlertSecond);
-            driver.switchTo().alert().accept();//*Закриття Алерта(модальне вікно).
+    ((JavascriptExecutor) driver).executeScript("scroll(0,200)");
+    WebElement alertWindowButton = driver.findElement(
+        By.xpath("//div[@class='element-list collapse show']//li[@id='item-1']"));
+    action.click(alertWindowButton).build().perform();
 
-        }
+    WebElement clickMeButtonInAlertWindowAfterFiveMinutes = wait.until(
+        ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='timerAlertButton']")));
+    action.click(clickMeButtonInAlertWindowAfterFiveMinutes).build().perform();
+    wait.until(ExpectedConditions.alertIsPresent());
+    String actualTextInAlertSecond = driver.switchTo().alert().getText();
+    String expectedTextInAlertSecond = "This alert appeared after 5 seconds";
+    Assertions.assertThat(expectedTextInAlertSecond).as("Не верный результат")
+        .isEqualTo(actualTextInAlertSecond);
+    driver.switchTo().alert().accept();//*Закриття Алерта(модальне вікно).
 
-    }
+  }
+}
 

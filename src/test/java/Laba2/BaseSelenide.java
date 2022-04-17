@@ -11,23 +11,20 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.*;
 
-    public class BaseSelenide {
-        WebDriver driver;
-        Actions action;
-        WebDriverWait wait;
+public class BaseSelenide {
 
-        @BeforeClass
-        public void driverSettingOnSite() {
-            Configuration.browser = "chrome";
-            Configuration.browserSize = "1366x500";
-            open("https://demoqa.com/");
-            closeAds();
-        }
-        public void closeAds() {
-            ((JavascriptExecutor) driver).executeScript("return document.getElementById('fixedban').remove();");
-        }
+  @BeforeClass
+  public void driverSettingOnSite() {
+    Configuration.browser = "chrome";
+    Configuration.browserSize = "1366x700";
+    Configuration.timeout = 10000;
+    open("https://demoqa.com/");
+  }
+}
 
-    }
+
+
 

@@ -9,20 +9,24 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public class Test7Selenide extends BaseSelenide{
-    @Test
-    public void frames() {
-        $(By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]")).scrollIntoView(true).click();
+public class Test7Selenide extends BaseSelenide {
 
-        $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-2']")).scrollIntoView(true).click();
+  @Test
+  public void frames() {
+    $(By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]")).scrollIntoView(true).click();
 
-            SelenideElement frameAlert = $("#frame1");
-            switchTo().frame(frameAlert);//**переключення до iframe
+    $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-2']")).scrollIntoView(true)
+        .click();
 
-            String textInFrameAlertsFrameWindow = $("#sampleHeading").getText();
-            String expectedTextInFrame = "This is a sample page";
-            Assertions.assertThat(expectedTextInFrame).as("Не корректный результат").isEqualTo(textInFrameAlertsFrameWindow);
-    }
-    }
+    SelenideElement frameAlert = $("#frame1");
+    switchTo().frame(frameAlert);
+
+    String textInFrameAlertsFrameWindow = $("#sampleHeading").getText();
+    String expectedTextInFrame = "This is a sample page";
+    Assertions.assertThat(expectedTextInFrame).as("Не корректный результат")
+        .isEqualTo(textInFrameAlertsFrameWindow);
+  }
+}
+
 
 

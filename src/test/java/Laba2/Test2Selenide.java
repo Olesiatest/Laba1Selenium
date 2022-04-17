@@ -10,23 +10,24 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class Test2Selenide extends BaseSelenide {
 
-    @Test
-    public void checkBox2() {
-        ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-            $(By.xpath("//h5[contains(text(), 'Elements')]")).click();
+  @Test
+  public void checkBox2() {
 
-            $(By.xpath("//li[@id='item-1']")).click();
+    $(By.xpath("//h5[contains(text(), 'Elements')]")).scrollIntoView(true).click();
 
-            $(By.xpath("//ol/li//button")).click();
+    $(By.xpath("//li[@id='item-1']")).scrollIntoView(true).click();
 
-            $(By.xpath("//ol//ol/li[last()]//button")).click();
+    $(By.xpath("//ol/li//button")).click();
 
-            $(By.xpath("//label[@for='tree-node-wordFile']")).click();
+    $(By.xpath("//ol//ol/li[last()]//button")).click();
 
-            String wordFileNew = $(".text-success").getText();
-            String expctedResult = "wordFile";
-            assertEquals(expctedResult, wordFileNew);
+    $(By.xpath("//label[@for='tree-node-wordFile']")).click();
 
-        }
-    }
+    String wordFileNew = $(".text-success").getText();
+    String expctedResult = "wordFile";
+    assertEquals(expctedResult, wordFileNew);
+
+  }
+}
+
 

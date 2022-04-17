@@ -7,29 +7,36 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 import static org.testng.AssertJUnit.fail;
 
-public class Test8Selenide extends BaseSelenide{
-    @Test
-    public void modals() {
-            $(By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]")).scrollIntoView(true).click();
-            $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-4']")).scrollIntoView(true).click();
+public class Test8Selenide extends BaseSelenide {
 
-            $("#showSmallModal").click();
+  @Test
+  public void modals() {
+    $(By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]")).scrollIntoView(true).click();
+    $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-4']")).scrollIntoView(true)
+        .click();
 
-            String actualModalTitleDialog = $("#example-modal-sizes-title-sm").getText();
-            String expectedModalTitleDialog = "Small Modal";
-            Assertions.assertThat(expectedModalTitleDialog).as("Не верный результат").isEqualTo(actualModalTitleDialog);
+    $("#showSmallModal").click();
 
-            String actualModalTextDialog = $(".modal-body").getText();
-            String expectedModalTextDialog = "This is a small modal. It has very less content";
-            Assertions.assertThat(expectedModalTextDialog).as("Не верный результат").isEqualTo(actualModalTextDialog);
+    String actualModalTitleDialog = $("#example-modal-sizes-title-sm").getText();
+    String expectedModalTitleDialog = "Small Modal";
+    Assertions.assertThat(expectedModalTitleDialog).as("Не верный результат")
+        .isEqualTo(actualModalTitleDialog);
 
-             $("#closeSmallModal").click();
+    String actualModalTextDialog = $(".modal-body").getText();
+    String expectedModalTextDialog = "This is a small modal. It has very less content";
+    Assertions.assertThat(expectedModalTextDialog).as("Не верный результат")
+        .isEqualTo(actualModalTextDialog);
 
-            String isExistClassModalOpen = $("body").attr("class");
-            if (isExistClassModalOpen.equals("modal-open")) {
-                fail("Модальное окно открыто");
-            }
-        }
+    $("#closeSmallModal").click();
+
+    sleep(100);
+    String isExistClassModalOpen = $("body").attr("class");
+    if (isExistClassModalOpen.equals("modal-open")) {
+      fail("Модальное окно открыто");
     }
+  }
+}
+

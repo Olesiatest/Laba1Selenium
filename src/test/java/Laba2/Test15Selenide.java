@@ -14,27 +14,28 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.$;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class Test15Selenide extends BaseSelenide{
+public class Test15Selenide extends BaseSelenide {
 
-    @Test
-    public void practiceFormSecond() {
-           $(By.xpath("//h5[contains(text(), 'Widgets')]")).scrollIntoView(true).click();
-           $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-1']")).scrollIntoView(true).click();
+  @Test
+  public void practiceFormSecond() {
+    $(By.xpath("//h5[contains(text(), 'Widgets')]")).scrollIntoView(true).click();
+    $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-1']")).scrollIntoView(true)
+        .click();
 
-            $("#autoCompleteMultipleInput").shouldBe(Condition.visible).setValue("o");
+    $("#autoCompleteMultipleInput").shouldBe(Condition.visible).setValue("o");
 
-            SelenideElement colorsMenu = $(By.xpath("//div[contains(@class, 'auto-complete__menu-list')]"));
-            String[] threeColor = {"Yellow", "Voilet", "Indigo"};
+    SelenideElement colorsMenu = $(By.xpath("//div[contains(@class, 'auto-complete__menu-list')]"));
+    String[] threeColor = {"Yellow", "Voilet", "Indigo"};
 
-            List<String> colorsToCheck = Arrays.asList(threeColor);
-            List<SelenideElement> colorsEl = colorsMenu.findAll(By.xpath("//div[contains(@class, 'auto-complete__option')]"));
-            for (SelenideElement col : colorsEl) {
-                assertTrue(colorsToCheck.contains(col.getText()));
-            }
-            colorsMenu.find(By.xpath("//div[contains(@class, 'auto-complete__option') and contains(text(), 'Voilet')]")).click();
-
-        }
+    List<String> colorsToCheck = Arrays.asList(threeColor);
+    List<SelenideElement> colorsEl = colorsMenu.findAll(
+        By.xpath("//div[contains(@class, 'auto-complete__option')]"));
+    for (SelenideElement col : colorsEl) {
+      assertTrue(colorsToCheck.contains(col.getText()));
     }
+    colorsMenu.find(
+            By.xpath("//div[contains(@class, 'auto-complete__option') and contains(text(), 'Voilet')]"))
+        .click();
 
-
-
+  }
+}

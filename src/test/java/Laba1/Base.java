@@ -15,27 +15,31 @@ import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
 public class Base {
-    WebDriver driver;
-    Actions action;
-    WebDriverWait wait;
 
-    @BeforeClass
-    public void driverSettingOnSite() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        action = new Actions(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("https://demoqa.com/");
-        closeAds();
-    }
-    public void closeAds() {
-    ((JavascriptExecutor) driver).executeScript("return document.getElementById('fixedban').remove();");
-    }
-    @AfterMethod
-    public void closedBrowser() {
-        driver.quit();
-    }
+  WebDriver driver;
+  Actions action;
+  WebDriverWait wait;
 
+  @BeforeClass
+  public void driverSettingOnSite() {
+    WebDriverManager.chromedriver().setup();
+    driver = new ChromeDriver();
+    driver.manage().window().maximize();
+    action = new Actions(driver);
+    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    driver.get("https://demoqa.com/");
+    closeAds();
+  }
+
+  public void closeAds() {
+    ((JavascriptExecutor) driver).executeScript(
+        "return document.getElementById('fixedban').remove();");
+  }
+
+  @AfterMethod
+  public void closedBrowser() {
+    driver.quit();
+  }
 }
+
 

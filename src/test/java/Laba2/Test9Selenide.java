@@ -9,34 +9,34 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class Test9Selenide extends BaseSelenide{
-    @Test
-    public void progressBar() throws InterruptedException {
+public class Test9Selenide extends BaseSelenide {
 
-            $(By.xpath("//h5[contains(text(), 'Widgets')]")).scrollIntoView(true).click();
+  @Test
+  public void progressBar() throws InterruptedException {
 
-           $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-4']")).scrollIntoView(true).click();
-           $(By.xpath("//button[@id='startStopButton']")).scrollIntoView(true).click();
+    $(By.xpath("//h5[contains(text(), 'Widgets')]")).scrollIntoView(true).click();
 
-           SelenideElement progressBar =$(By.xpath("//div[@role='progressbar']"));
+    $(By.xpath("//div[@class='element-list collapse show']//li[@id='item-4']")).scrollIntoView(true)
+        .click();
+    $(By.xpath("//button[@id='startStopButton']")).click();
 
-            String ariaValuenow = progressBar.attr("aria-valuenow");
-            String ariaValuemax = progressBar.attr("aria-valuemax");
+    SelenideElement progressBar = $(By.xpath("//div[@role='progressbar']"));
 
-            while (Integer.parseInt(ariaValuenow) <= Integer.parseInt(ariaValuemax)) {
-                Thread.sleep(100);
-                ariaValuenow = progressBar.attr("aria-valuenow");
-                if (Integer.parseInt(ariaValuenow) == Integer.parseInt(ariaValuemax)) {
-                    break;
-                }
-            }
-            Thread.sleep(1000);
+    String ariaValuenow = progressBar.attr("aria-valuenow");
+    String ariaValuemax = progressBar.attr("aria-valuemax");
 
-            $("#resetButton").click();
-
-            ariaValuenow = progressBar.attr("aria-valuenow");
-            Assertions.assertThat(Integer.parseInt(ariaValuenow)).as("Прогрес бар равен 0").isEqualTo(0);
-        }
+    while (Integer.parseInt(ariaValuenow) <= Integer.parseInt(ariaValuemax)) {
+      Thread.sleep(100);
+      ariaValuenow = progressBar.attr("aria-valuenow");
+      if (Integer.parseInt(ariaValuenow) == Integer.parseInt(ariaValuemax)) {
+        break;
+      }
     }
+    $("#resetButton").click();
+
+    ariaValuenow = progressBar.attr("aria-valuenow");
+    Assertions.assertThat(Integer.parseInt(ariaValuenow)).as("Прогрес бар равен 0").isEqualTo(0);
+  }
+}
 
 
