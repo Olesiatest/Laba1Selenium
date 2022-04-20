@@ -13,6 +13,7 @@ public class RegisterPage extends BasePage {
   private final By checkBoxAgree = By.xpath("//input[@name='agree']");
   private final By submitButton = By.xpath("//input[@type='submit']");
 
+
   public RegisterPage fillFirstnameField(String firstName) {
     getDriver().findElement(firstnameField).sendKeys(firstName);
     return this;
@@ -55,3 +56,4 @@ public class RegisterPage extends BasePage {
 
 
 }
+

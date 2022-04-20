@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class RegisterTest extends BaseTest {
 
-  @Test
+  @Test(priority = 1)
   public void fillRegisterForm() {
     MainPage mainPage = new MainPage();
     String actualResult = mainPage.clickOnMyAccountPage().clickOnRegisterPage()
@@ -20,6 +20,24 @@ public class RegisterTest extends BaseTest {
         .textAccountPage();
     Assertions.assertThat("Your Account Has Been Created!").as("Ошибка").isEqualTo(actualResult);
 
+
+  }
+
+  @Test(priority = 2)
+  public void fillExceptForm() {
+    MainPage mainPage = new MainPage();
+    String actualResult = mainPage.clickOnMyAccountPage().clickOnRegisterPage()
+        .fillLastnameField("Demchuk")
+        .fillEmailField("tabam@aikusy.comfb515226")
+        .fillTelephoneField("525124")
+        .fillPasswordField("123456")
+        .fillConfirmField("123456")
+        .clickCheckBoxAgree()
+        .clickOnSubmitButton()
+        .getErrorFirstName();
+
+    Assertions.assertThat("First Name must be between 1 and 32 characters!").as("Ошибка")
+        .isEqualTo(actualResult);
 
   }
 
