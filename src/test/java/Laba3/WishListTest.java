@@ -14,11 +14,11 @@ public class WishListTest extends BaseTest {
         .clickButton()
         .getDropdownComponent()
         .getChooseMonitors()
+
         .addWishListMonitorApple()
         .addWishListMonitorSamsung()
         .clickWishPageUrl()
         .sumWishListProducts();
     Assertions.assertThat(2).as("Не корректное кол-во товара").isEqualTo(actualProductCount);
-    
   }
 }
