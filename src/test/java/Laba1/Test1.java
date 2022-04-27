@@ -1,11 +1,10 @@
 package Laba1;
 
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
-import static org.testng.AssertJUnit.assertEquals;
+import utils.Utils;
 
 public class Test1 extends Base {
 
@@ -15,21 +14,21 @@ public class Test1 extends Base {
     String mail = "cekijil597@moonran.com";
     String currentAddress = "qwerty1256,12";
     String permAddress = "test,12";
-    ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
 
     WebElement cardElements = driver.findElement(By.xpath("//h5[contains(text(), 'Elements')]"));
+    Utils.scrollToElement(driver, cardElements);
     cardElements.click();
 
     WebElement textBoxInElement = driver.findElement(
-        By.xpath("//li[@id='item-0']"));
+        By.id("item-0"));
     textBoxInElement.click();
 
     WebElement firstNameFill = driver.findElement(
-        By.xpath("//input[@id='userName']"));
+        By.id("userName"));
     firstNameFill.sendKeys(name);
 
     WebElement emailAddressFill = driver.findElement(
-        By.xpath("//input[@id='userEmail']"));
+        By.id("userEmail"));
     emailAddressFill.sendKeys(mail);
 
     WebElement currentAddressFill = driver.findElement(
@@ -40,19 +39,18 @@ public class Test1 extends Base {
         By.xpath("//textarea[@id='permanentAddress']"));
     permanentAddressFill.sendKeys(permAddress);
 
-    ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
-
     WebElement buttonSubmit = driver.findElement(
-        By.xpath("//button[@id='submit']"));
+        By.id("submit"));
+    Utils.scrollToElement(driver, buttonSubmit);
     buttonSubmit.click();
 
     WebElement rowName = driver.findElement(
-        By.xpath("//p[@id='name']"));
+        By.id("name"));
     String nameOut = rowName.getText();
     nameOut = nameOut.substring(nameOut.indexOf(":") + 1);
 
     WebElement rowEmail = driver.findElement(
-        By.xpath("//p[@id='email']"));
+        By.id("email"));
     String emailOut = rowEmail.getText();
     emailOut = emailOut.substring(emailOut.indexOf(":") + 1);
 
@@ -66,10 +64,23 @@ public class Test1 extends Base {
     String permanentOut = rowPermanentAddress.getText();
     permanentOut = permanentOut.substring(permanentOut.indexOf(":") + 1);
 
-    assertEquals(name, nameOut);
-    assertEquals(mail, emailOut);
-    assertEquals(currentAddress, currentOut);
-    assertEquals(permAddress, permanentOut);
+    Assertions.assertThat(name)
+        .as(String.format("%s Actual result is not equals expected result %s", name, nameOut))
+        .isEqualTo(nameOut);
+
+    Assertions.assertThat(mail)
+        .as(String.format("%s Actual result is not equals expected result %s", mail, emailOut))
+        .isEqualTo(emailOut);
+
+    Assertions.assertThat(currentAddress)
+        .as(String.format("%s Actual result is not equals expected result %s", currentAddress,
+            currentOut))
+        .isEqualTo(currentOut);
+
+    Assertions.assertThat(permAddress)
+        .as(String.format("%s Actual result is not equals expected result %s", permAddress,
+            permanentOut))
+        .isEqualTo(permanentOut);
 
   }
 }

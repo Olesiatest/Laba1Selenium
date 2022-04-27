@@ -1,23 +1,23 @@
 package Laba1;
 
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
-import static org.testng.AssertJUnit.assertEquals;
+import utils.Utils;
 
 public class Test2 extends Base {
 
   @Test
   public void checkBox() {
-    ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
+
     WebElement cardElements = driver.findElement(
         By.xpath("//h5[contains(text(), 'Elements')]"));
+    Utils.scrollToElement(driver, cardElements);
     cardElements.click();
 
     WebElement checkBoxElement = driver.findElement(
-        By.xpath("//li[@id='item-1']"));
+        By.id("item-1"));
     checkBoxElement.click();
 
     WebElement uncollapseHome = driver.findElement(
@@ -35,10 +35,10 @@ public class Test2 extends Base {
     WebElement wordFile = driver.findElement(
         By.xpath("//span[@class='text-success']"));
     String wordFileNew = wordFile.getText();
-    String expctedResult = "wordFile";
-    assertEquals(expctedResult, wordFileNew);
-
-
+    String expectedResult = "wordFile";
+    Assertions.assertThat(expectedResult)
+        .as(String.format("%s Actual result is not equal %s", expectedResult, wordFileNew))
+        .isEqualTo(wordFileNew);
   }
 }
 

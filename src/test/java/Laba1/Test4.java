@@ -2,31 +2,30 @@ package Laba1;
 
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
+import utils.Utils;
 
 public class Test4 extends Base {
 
   @Test
   public void windows() throws InterruptedException {
-    ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
 
     WebElement cardAlertFrameWindows = driver.findElement(
         By.xpath("//h5[contains(text(), 'Alerts, Frame & Windows')]"));
+    Utils.scrollToElement(driver, cardAlertFrameWindows);
     action.click(cardAlertFrameWindows).build().perform();
 
-    ((JavascriptExecutor) driver).executeScript("scroll(0,100)");
     WebElement browserWindowButton = driver.findElement(
         By.xpath("//div[@class='element-list collapse show']//li[@id='item-0']"));
+    Utils.scrollToElement(driver, browserWindowButton);
     action.click(browserWindowButton).build().perform();
 
-    Thread.sleep(1000);
-
-    WebElement newTabInBrowserWindows = driver.findElement(By.xpath("//button[@id='tabButton']"));
+    WebElement newTabInBrowserWindows = wait.until(
+        ExpectedConditions.elementToBeClickable(By.id("tabButton")));
     action.click(newTabInBrowserWindows).build().perform();
     String defaultWindow = driver.getWindowHandle();
-//            Set<String> availableWindows=driver.getWindowHandles();
     String[] availableWindows = driver.getWindowHandles().toArray(new String[0]);
     for (int i = 0; i < availableWindows.length; i++) {
       if (!defaultWindow.equals(availableWindows[i])) {
@@ -35,9 +34,13 @@ public class Test4 extends Base {
       }
 
     }
-    String sempleHeandingText = driver.findElement(By.xpath("//h1[@id='sampleHeading']")).getText();
+    String sempleHeandingText = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[@id='sampleHeading']")))
+        .getText();
     String expectedHeadingText = "This is a sample page";
-    Assertions.assertThat(expectedHeadingText).as("Не корректный текст")
+    Assertions.assertThat(expectedHeadingText)
+        .as(String.format("%s Actual result is not equal %s", expectedHeadingText,
+            sempleHeandingText))
         .isEqualTo(sempleHeandingText);
   }
 }

@@ -1,12 +1,11 @@
 package Laba1;
 
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-
-import static org.testng.AssertJUnit.assertEquals;
 
 public class Test12 extends Base {
 
@@ -34,7 +33,8 @@ public class Test12 extends Base {
 
     String selected = selectOne.findElement(By.xpath("//div[contains(@class, 'singleValue')]"))
         .getText();
-    assertEquals("Ms.", selected);
+    Assertions.assertThat(selected)
+        .as(String.format("%s Actual result is not equal %s", selected, "Ms"));
 
   }
 }
