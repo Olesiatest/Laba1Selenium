@@ -1,12 +1,10 @@
 package Laba2;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
-
 import static com.codeborne.selenide.Selenide.$;
-import static org.testng.AssertJUnit.assertEquals;
+
+import org.assertj.core.api.Assertions;
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
 
 public class Test2Selenide extends BaseSelenide {
 
@@ -24,8 +22,10 @@ public class Test2Selenide extends BaseSelenide {
     $(By.xpath("//label[@for='tree-node-wordFile']")).click();
 
     String wordFileNew = $(".text-success").getText();
-    String expctedResult = "wordFile";
-    assertEquals(expctedResult, wordFileNew);
+    String expectedResult = "wordFile";
+    Assertions.assertThat(expectedResult)
+        .as(String.format("%s Actual result is not equal %s", expectedResult, wordFileNew))
+        .isEqualTo(wordFileNew);
 
   }
 }

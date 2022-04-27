@@ -2,22 +2,23 @@ package Laba1;
 
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
+import utils.Utils;
 
 public class Test12 extends Base {
 
   @Test
   public void selectAble() {
-    ((JavascriptExecutor) driver).executeScript("scroll(0,300)");
 
     WebElement cardWidget = driver.findElement(By.xpath("//h5[contains(text(), 'Widgets')]"));
+    Utils.scrollToElement(driver, cardWidget);
     action.click(cardWidget).build().perform();
-    ((JavascriptExecutor) driver).executeScript("scroll(0,700)");
+
     WebElement selectMenuInWidget = driver.findElement(
         By.xpath("//div[@class='element-list collapse show']//li[@id='item-8']"));
+    Utils.scrollToElement(driver, selectMenuInWidget);
     action.click(selectMenuInWidget).build().perform();
 
     WebElement dropDownMenu = driver.findElement(By.xpath("//div[@id='selectOne']"));

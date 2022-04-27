@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.Locale;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
@@ -16,8 +15,6 @@ public class Test14 extends Base {
   @Test
   public void practiceForm() {
 
-    ((JavascriptExecutor) driver).executeScript(
-        "return document.getElementById('fixedban').remove();");
     WebElement cardForms = driver.findElement(By.xpath("//h5[contains(text(), 'Forms')]"));
     Utils.scrollToElement(driver, cardForms);
     action.click(cardForms).build().perform();
@@ -27,10 +24,8 @@ public class Test14 extends Base {
     Utils.scrollToElement(driver, clickMenuPracticeButton);
     action.click(clickMenuPracticeButton).build().perform();
 
-    ((JavascriptExecutor) driver).executeScript("scrollTo(0,document.body.scrollHeight)");
-    ((JavascriptExecutor) driver).executeScript(
-        "return document.getElementById('submit').click();");
-
+    Utils.scrollInBottomPage(driver);
+    Utils.foundSubmitButton(driver);
     String firstNameField = driver.findElement(By.id("firstName"))
         .getCssValue("border-color");
     String errorColor = "rgb(206, 212, 218)";

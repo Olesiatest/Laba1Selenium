@@ -1,14 +1,10 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.sleep;
-import static org.testng.AssertJUnit.fail;
 
 public class Test8Selenide extends BaseSelenide {
 
@@ -22,21 +18,24 @@ public class Test8Selenide extends BaseSelenide {
 
     String actualModalTitleDialog = $("#example-modal-sizes-title-sm").getText();
     String expectedModalTitleDialog = "Small Modal";
-    Assertions.assertThat(expectedModalTitleDialog).as("Не верный результат")
+    Assertions.assertThat(expectedModalTitleDialog)
+        .as(String.format("%s Actual result is not equal %s", expectedModalTitleDialog,
+            actualModalTitleDialog))
         .isEqualTo(actualModalTitleDialog);
 
     String actualModalTextDialog = $(".modal-body").getText();
     String expectedModalTextDialog = "This is a small modal. It has very less content";
-    Assertions.assertThat(expectedModalTextDialog).as("Не верный результат")
+    Assertions.assertThat(expectedModalTextDialog)
+        .as(String.format("%s Actual result is not equal %s", expectedModalTextDialog,
+            actualModalTextDialog))
         .isEqualTo(actualModalTextDialog);
 
     $("#closeSmallModal").click();
-
-    sleep(100);
-    String isExistClassModalOpen = $("body").attr("class");
-    if (isExistClassModalOpen.equals("modal-open")) {
-      fail("Модальное окно открыто");
-    }
+    boolean theModalIsNotOpen = Boolean.parseBoolean($("body").getAttribute("class"));
+    Assertions.assertThat(theModalIsNotOpen)
+        .as(String.format("%b Actual result is not equal true", theModalIsNotOpen))
+        .isTrue();
   }
 }
+
 

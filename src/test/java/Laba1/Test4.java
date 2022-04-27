@@ -34,14 +34,14 @@ public class Test4 extends Base {
       }
 
     }
-    String sempleHeandingText = wait.until(
+    String sampleHeandingText = wait.until(
             ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[@id='sampleHeading']")))
         .getText();
     String expectedHeadingText = "This is a sample page";
     Assertions.assertThat(expectedHeadingText)
         .as(String.format("%s Actual result is not equal %s", expectedHeadingText,
-            sempleHeandingText))
-        .isEqualTo(sempleHeandingText);
+            sampleHeandingText))
+        .isEqualTo(sampleHeandingText);
   }
 }
 

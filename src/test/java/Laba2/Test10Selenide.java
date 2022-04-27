@@ -1,16 +1,14 @@
 package Laba2;
 
-import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
+import com.codeborne.selenide.SelenideElement;
+import java.util.Arrays;
+import java.util.List;
+import org.assertj.core.api.Assertions;
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
 
 public class Test10Selenide extends BaseSelenide {
 
@@ -22,11 +20,14 @@ public class Test10Selenide extends BaseSelenide {
     List<SelenideElement> tabsListWidget = $$(By.xpath("//a[@role='tab']"));
     List<String> activeTexts = Arrays.asList("What", "Origin", "Use");
     for (SelenideElement tab : tabsListWidget) {
-        if (activeTexts.contains(tab.getText())) {
-            assert !tab.attr("class").contains("disabled");
-        } else {
-            assert tab.attr("class").contains("disabled");
-        }
+      boolean isDisabled = tab.getAttribute("class").contains("disabled");
+      if (activeTexts.contains(tab.getText())) {
+        Assertions.assertThat(isDisabled)
+            .as(String.format("%b Actual result is not equal,false", isDisabled)).isFalse();
+      } else {
+        Assertions.assertThat(isDisabled)
+            .as(String.format("%s tab is not disabled", tab.getText())).isTrue();
+      }
     }
   }
 }

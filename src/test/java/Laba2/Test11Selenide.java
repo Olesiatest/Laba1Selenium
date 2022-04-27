@@ -1,13 +1,11 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
 
 public class Test11Selenide extends BaseSelenide {
 
@@ -20,7 +18,8 @@ public class Test11Selenide extends BaseSelenide {
     Select select = new Select($("#oldSelectMenu"));
     select.selectByVisibleText("White");
     String chooseColorBox = select.getFirstSelectedOption().getText();
-    Assertions.assertThat("White").as("Выбран не правильный вариант").isEqualTo(chooseColorBox);
+    Assertions.assertThat("White").as(String.format("%s Actual result is not equal %s", "White",
+        chooseColorBox)).isEqualTo(chooseColorBox);
 
   }
 }

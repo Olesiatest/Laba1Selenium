@@ -1,13 +1,12 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
+
 import com.codeborne.selenide.SelenideElement;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
 
 public class Test7Selenide extends BaseSelenide {
 
@@ -23,7 +22,9 @@ public class Test7Selenide extends BaseSelenide {
 
     String textInFrameAlertsFrameWindow = $("#sampleHeading").getText();
     String expectedTextInFrame = "This is a sample page";
-    Assertions.assertThat(expectedTextInFrame).as("Не корректный результат")
+    Assertions.assertThat(expectedTextInFrame)
+        .as(String.format("%s Actual result is not equal %s", expectedTextInFrame,
+            textInFrameAlertsFrameWindow))
         .isEqualTo(textInFrameAlertsFrameWindow);
   }
 }

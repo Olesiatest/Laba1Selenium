@@ -1,13 +1,10 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
-import static org.assertj.core.api.Fail.fail;
-import static org.testng.AssertJUnit.assertEquals;
 
 public class Test1Selenide extends BaseSelenide {
 
@@ -38,9 +35,22 @@ public class Test1Selenide extends BaseSelenide {
     outCurAddress = outCurAddress.substring(outCurAddress.indexOf(":") + 1);
     outPerAddress = outPerAddress.substring(outPerAddress.indexOf(":") + 1);
 
-    Assertions.assertThat(name).as("etstseetse").isEqualTo(outName);
-    Assertions.assertThat(mail).isEqualTo(outEmail);
-    Assertions.assertThat(curAdd).isEqualTo(outCurAddress);
-    Assertions.assertThat(perAdd).isEqualTo(outPerAddress);
+    Assertions.assertThat(name)
+        .as(String.format("%s Actual result is not equals expected result %s", name, outName))
+        .isEqualTo(outName);
+
+    Assertions.assertThat(mail)
+        .as(String.format("%s Actual result is not equals expected result %s", mail, outEmail))
+        .isEqualTo(outEmail);
+
+    Assertions.assertThat(outCurAddress)
+        .as(String.format("%s Actual result is not equals expected result %s", outCurAddress,
+            outCurAddress))
+        .isEqualTo(outCurAddress);
+
+    Assertions.assertThat(outPerAddress)
+        .as(String.format("%s Actual result is not equals expected result %s", outPerAddress,
+            outPerAddress))
+        .isEqualTo(outPerAddress);
   }
 }

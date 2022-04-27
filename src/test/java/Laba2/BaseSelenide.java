@@ -1,18 +1,10 @@
 package Laba2;
 
-import com.codeborne.selenide.Configuration;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import java.time.Duration;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static com.codeborne.selenide.Selenide.open;
 
-import static com.codeborne.selenide.Selenide.*;
+import com.codeborne.selenide.Configuration;
+import org.testng.annotations.BeforeClass;
 
 public class BaseSelenide {
 
@@ -22,7 +14,14 @@ public class BaseSelenide {
     Configuration.browserSize = "1366x700";
     Configuration.timeout = 10000;
     open("https://demoqa.com/");
+    closeAds();
   }
+
+  public void closeAds() {
+    executeJavaScript("return document.getElementById('fixedban').remove();");
+
+  }
+
 }
 
 

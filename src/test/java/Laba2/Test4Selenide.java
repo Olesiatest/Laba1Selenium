@@ -1,14 +1,11 @@
 package Laba2;
 
-import org.assertj.core.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
-import static java.lang.Thread.sleep;
+
+import org.assertj.core.api.Assertions;
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
 
 public class Test4Selenide extends BaseSelenide {
 
@@ -20,19 +17,14 @@ public class Test4Selenide extends BaseSelenide {
 
     $(By.xpath("//button[@id='tabButton']")).click();
     switchTo().window(1);
-//            String defaultWindow = driver.getWindowHandle();
-//            String[] availableWindows = driver.getWindowHandles().toArray(new String[0]);
-//            for (int i = 0; i < availableWindows.length; i++) {
-//                if (!defaultWindow.equals(availableWindows[i])) {
-//                    driver.switchTo().window(availableWindows[i]);
-//                    break;
-//                }
-//            }
     String sampleHeandingText = $("#sampleHeading").getText();
     String expectedHeadingText = "This is a sample page";
-    Assertions.assertThat(expectedHeadingText).as("Не корректный текст")
+    Assertions.assertThat(expectedHeadingText)
+        .as(String.format("%s Actual result is not equal %s", expectedHeadingText,
+            sampleHeandingText))
         .isEqualTo(sampleHeandingText);
   }
 }
+
 
 

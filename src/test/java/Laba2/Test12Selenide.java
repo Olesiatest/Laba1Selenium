@@ -1,15 +1,12 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
-import static org.testng.AssertJUnit.assertEquals;
 
 public class Test12Selenide extends BaseSelenide {
 
@@ -21,14 +18,13 @@ public class Test12Selenide extends BaseSelenide {
         .click();
     $("#selectOne").scrollIntoView(true).click();
 
-//            $("#selectOne").shouldBe(Condition.visible).click();
-
     SelenideElement selectOne = $(
         By.xpath("//div[contains(text(), 'Ms.') and not(contains(@class, 'singleValue'))]"));
     selectOne.shouldBe(Condition.visible).scrollIntoView("Ms.").click();
 
     String selected = selectOne.find(By.xpath("//div[contains(@class, 'singleValue')]")).getText();
-    assertEquals("Ms.", selected);
+    Assertions.assertThat(selected)
+        .as(String.format("%s Actual result is not equal %s", selected, "Ms"));
 
   }
 }

@@ -1,13 +1,11 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import com.codeborne.selenide.SelenideElement;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
 
 public class Test9Selenide extends BaseSelenide {
 
@@ -26,16 +24,15 @@ public class Test9Selenide extends BaseSelenide {
     String ariaValuemax = progressBar.attr("aria-valuemax");
 
     while (Integer.parseInt(ariaValuenow) <= Integer.parseInt(ariaValuemax)) {
-      Thread.sleep(100);
       ariaValuenow = progressBar.attr("aria-valuenow");
       if (Integer.parseInt(ariaValuenow) == Integer.parseInt(ariaValuemax)) {
         break;
       }
     }
     $("#resetButton").click();
-
     ariaValuenow = progressBar.attr("aria-valuenow");
-    Assertions.assertThat(Integer.parseInt(ariaValuenow)).as("Прогрес бар равен 0").isEqualTo(0);
+    Assertions.assertThat(Integer.parseInt(ariaValuenow))
+        .as(String.format("%s Actual result is not equal %d", ariaValuenow, 0)).isEqualTo(0);
   }
 }
 

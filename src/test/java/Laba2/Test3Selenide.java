@@ -1,12 +1,10 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
 
 public class Test3Selenide extends BaseSelenide {
 
@@ -31,7 +29,9 @@ public class Test3Selenide extends BaseSelenide {
     String expectedDoubleClickButton = "You have done a double click";
 
     String actualDoubleClickButton = $("#doubleClickMessage").getText();
-    Assertions.assertThat(expectedDoubleClickButton).as("Не соответствует результат")
+    Assertions.assertThat(expectedDoubleClickButton)
+        .as(String.format("%s Actual result is not equal %s", expectedDoubleClickButton,
+            actualDoubleClickButton))
         .isEqualTo(actualDoubleClickButton);
   }
 }

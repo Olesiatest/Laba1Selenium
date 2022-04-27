@@ -1,15 +1,12 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
+
 import com.codeborne.selenide.Condition;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
 
 public class Test6Selenide extends BaseSelenide {
 
@@ -24,9 +21,10 @@ public class Test6Selenide extends BaseSelenide {
 
     String actualTextInAlertSecond = switchTo().alert().getText();
     String expectedTextInAlertSecond = "This alert appeared after 5 seconds";
-    Assertions.assertThat(expectedTextInAlertSecond).as("Не верный результат")
+    Assertions.assertThat(expectedTextInAlertSecond)
+        .as(String.format("%s Actual result is not equal %s", expectedTextInAlertSecond,
+            actualTextInAlertSecond))
         .isEqualTo(actualTextInAlertSecond);
-    switchTo().alert().accept();
   }
 
 }

@@ -1,15 +1,12 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
+
 import com.codeborne.selenide.Condition;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
 
 public class Test5Selenide extends BaseSelenide {
 
@@ -23,9 +20,10 @@ public class Test5Selenide extends BaseSelenide {
 
     String actualTextInAlert = switchTo().alert().getText();
     String expectedTextInAlert = "You clicked a button";
-    Assertions.assertThat(expectedTextInAlert).as("Не верный результат")
+    Assertions.assertThat(expectedTextInAlert)
+        .as(String.format("%s Actual result is not equal %s", expectedTextInAlert,
+            actualTextInAlert))
         .isEqualTo(actualTextInAlert);
-    switchTo().alert().accept();
 
   }
 }

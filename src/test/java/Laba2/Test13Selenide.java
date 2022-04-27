@@ -1,12 +1,11 @@
 package Laba2;
 
-import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
-
 import static com.codeborne.selenide.Selenide.$;
+
+import com.codeborne.selenide.SelenideElement;
+import org.assertj.core.api.Assertions;
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
 
 public class Test13Selenide extends BaseSelenide {
 
@@ -18,13 +17,18 @@ public class Test13Selenide extends BaseSelenide {
         .click();
 
     SelenideElement first = $(By.xpath("//li[contains(text(), 'Cras justo odio')]"));
-    first.scrollIntoView(true).click();
+    first.click();
     SelenideElement second = $(By.xpath("//li[contains(text(), 'Morbi leo risus')]"));
-    second.scrollIntoView(true).click();
+    second.click();
 
-    assert first.attr("class").contains("active");
-    assert second.attr("class").contains("active");
-
+    String firstAttribute = first.getAttribute("class");
+    String secondAttribute = second.getAttribute("class");
+    Assertions.assertThat(firstAttribute.contains("active"))
+        .as(String.format("%b Actual result is not equal true", firstAttribute.contains("active")))
+        .isTrue();
+    Assertions.assertThat(secondAttribute.contains("active"))
+        .as(String.format("%b Actual result is not equal true", secondAttribute.contains("active")))
+        .isTrue();
   }
 }
 

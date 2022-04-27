@@ -1,18 +1,15 @@
 package Laba2;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.annotations.Test;
-
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-
-import static com.codeborne.selenide.Selenide.$;
-import static org.testng.AssertJUnit.assertTrue;
+import org.assertj.core.api.Assertions;
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
 
 public class Test15Selenide extends BaseSelenide {
 
@@ -24,18 +21,15 @@ public class Test15Selenide extends BaseSelenide {
 
     $("#autoCompleteMultipleInput").shouldBe(Condition.visible).setValue("o");
 
-    SelenideElement colorsMenu = $(By.xpath("//div[contains(@class, 'auto-complete__menu-list')]"));
-    String[] threeColor = {"Yellow", "Voilet", "Indigo"};
+    List<String> colorsToCheck = new ArrayList<>();
 
-    List<String> colorsToCheck = Arrays.asList(threeColor);
-    List<SelenideElement> colorsEl = colorsMenu.findAll(
+    List<SelenideElement> colorElements = $$(
         By.xpath("//div[contains(@class, 'auto-complete__option')]"));
-    for (SelenideElement col : colorsEl) {
-      assertTrue(colorsToCheck.contains(col.getText()));
+    for (int i = 0; i < colorElements.size(); i++) {
+      String color = colorElements.get(i).getText();
+      colorsToCheck.add(color);
     }
-    colorsMenu.find(
-            By.xpath("//div[contains(@class, 'auto-complete__option') and contains(text(), 'Voilet')]"))
-        .click();
-
+    Assertions.assertThat(colorsToCheck).as("Actual result is not equals expected")
+        .containsExactlyInAnyOrder("Yellow", "Violet", "Indigo");
   }
 }
