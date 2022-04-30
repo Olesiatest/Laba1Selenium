@@ -1,6 +1,7 @@
 package Laba3;
 
 import blocks.HeaderBlock.MenuItems;
+import blocks.NavigationMenuBlock.MenuNavComponents;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
@@ -15,12 +16,12 @@ public class WishListTest extends BaseTest {
         .fillLoginEmailAddress("tabamfbh576@aikusy.com")
         .fillPassword("123456")
         .clickButton()
-        .getDropdownComponent()
-        .getChooseMonitors()
+        .getNavigationMenu()
+        .selectItemFromNavMenu(MenuNavComponents.MONITORS, new MonitorComponentPage())
         .addWishListMonitorApple()
         .addWishListMonitorSamsung()
         .clickWishPageUrl()
         .sumWishListProducts();
-    Assertions.assertThat(2).as("Не корректное кол-во товара").isEqualTo(actualProductCount);
+    Assertions.assertThat(2).as("Count goods is not correct").isEqualTo(actualProductCount);
   }
 }
