@@ -14,25 +14,25 @@ public class AccountCreatedPage extends BasePage {
 
 
   public String textAccountPage() {
-    return getDriver().findElement(messageCreatedAccount).getText();
+    return find(messageCreatedAccount).getText();
   }
 
   public String getErrorFirstName() {
-    return getDriver().findElement(errorFirstName).getText();
+    return find(errorFirstName).getText();
   }
 
   public String getMyAccountLogin() {
-    return getDriver().findElement(myAccountLogin).getText();
+    return find(myAccountLogin).getText();
   }
 
   public AccountCreatedPage getDropdownComponent() {
     Actions actions = new Actions(getDriver());
-    actions.moveToElement(getDriver().findElement(chooseDropdownComponent)).build().perform();
+    actions.moveToElement(find(chooseDropdownComponent)).build().perform();
     return this;
   }
 
   public MonitorComponentPage getChooseMonitors() {
-    getDriver().findElement(chooseMonitors).click();
+    find(chooseMonitors).click();
     return new MonitorComponentPage();
   }
 

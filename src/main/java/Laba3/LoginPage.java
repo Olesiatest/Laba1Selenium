@@ -9,17 +9,18 @@ public class LoginPage extends BasePage {
   public final By submitButton = By.xpath("//input[@type='submit']");
 
   public LoginPage fillLoginEmailAddress(String emailAddress) {
-    getDriver().findElement(loginEmailAddress).sendKeys(emailAddress);
+    find(loginEmailAddress).sendKeys(emailAddress);
     return this;
   }
 
-  public LoginPage fillPassword(String password) {
-    getDriver().findElement(loginPassword).sendKeys(password);
+  public LoginPage fillPassword(String
+      password) {
+    find(loginPassword).sendKeys(password);
     return this;
   }
 
   public AccountCreatedPage clickButton() {
-    getDriver().findElement(submitButton).click();
+    find(submitButton).click();
     return new AccountCreatedPage();
   }
 

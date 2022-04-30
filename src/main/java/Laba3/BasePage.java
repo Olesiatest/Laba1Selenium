@@ -1,8 +1,9 @@
 package Laba3;
 
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import  org.openqa.selenium.WebDriver;
 
 public abstract class BasePage {
 
@@ -12,19 +13,23 @@ public abstract class BasePage {
   public static void setDriver(WebDriver webDriver) {
     driver = webDriver;
   }
-  public static WebDriver getDriver(){
+
+  public static WebDriver getDriver() {
     return driver;
   }
 
-//  protected WebElement find(By locator) {
-//    return getDriver().findElement(locator);
-//  }
+  protected WebElement find(By locator) {
+    return getDriver().findElement(locator);
+  }
+
+  protected List<WebElement> findElements(By locator) {
+    return getDriver().findElements(locator);
+  }
 //
 //  protected WebElement waitUntilVisible(By locator,int seconds) {
 //    return new WebDriverWait(getDriver(),seconds)
 //        .until(ExpectedConditions.visibilityOfElementLocated(locator));
 //  }
-
 
 
 }

@@ -15,42 +15,42 @@ public class RegisterPage extends BasePage {
 
 
   public RegisterPage fillFirstnameField(String firstName) {
-    getDriver().findElement(firstnameField).sendKeys(firstName);
+    find(firstnameField).sendKeys(firstName);
     return this;
   }
 
   public RegisterPage fillLastnameField(String lastName) {
-    getDriver().findElement(lastnameField).sendKeys(lastName);
+    find(lastnameField).sendKeys(lastName);
     return this;
   }
 
   public RegisterPage fillEmailField(String email) {
-    getDriver().findElement(emailField).sendKeys(email);
+    find(emailField).sendKeys(email);
     return this;
   }
 
   public RegisterPage fillTelephoneField(String telephone) {
-    getDriver().findElement(telephoneField).sendKeys(telephone);
+    find(telephoneField).sendKeys(telephone);
     return this;
   }
 
   public RegisterPage fillPasswordField(String password) {
-    getDriver().findElement(passwordField).sendKeys(password);
+    find(passwordField).sendKeys(password);
     return this;
   }
 
   public RegisterPage fillConfirmField(String password) {
-    getDriver().findElement(confirmField).sendKeys(password);
+    find(confirmField).sendKeys(password);
     return this;
   }
 
   public RegisterPage clickCheckBoxAgree() {
-    getDriver().findElement(checkBoxAgree).click();
+    find(checkBoxAgree).click();
     return this;
   }
 
   public AccountCreatedPage clickOnSubmitButton() {
-    getDriver().findElement(submitButton).click();
+    find(submitButton).click();
     return new AccountCreatedPage();
   }
 

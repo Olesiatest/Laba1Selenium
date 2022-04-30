@@ -7,6 +7,6 @@ public class WishListPage extends BasePage {
   private final By wishListProducts = By.xpath("//tbody/tr");
 
   public int sumWishListProducts() {
-    return getDriver().findElements(wishListProducts).size();
+    return findElements(wishListProducts).size();
   }
 }

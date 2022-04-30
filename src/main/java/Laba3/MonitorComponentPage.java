@@ -10,17 +10,17 @@ public class MonitorComponentPage extends BasePage {
 
 
   public MonitorComponentPage addWishListMonitorApple() {
-    getDriver().findElement(wishListMonitorApple).click();
+    find(wishListMonitorApple).click();
     return this;
   }
 
   public MonitorComponentPage addWishListMonitorSamsung() {
-    getDriver().findElement(wishListMonitorSamsung).click();
+    find(wishListMonitorSamsung).click();
     return this;
   }
 
   public WishListPage clickWishPageUrl() {
-    getDriver().findElement(wishPageUrl).click();
+    find(wishPageUrl).click();
     return new WishListPage();
   }
 

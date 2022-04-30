@@ -1,5 +1,6 @@
 package Laba3;
 
+import blocks.HeaderBlock.MenuItems;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
@@ -7,14 +8,15 @@ public class WishListTest extends BaseTest {
 
   @Test(priority = 1)
   public void addToWishList() {
+
     MainPage mainPage = new MainPage();
-    int actualProductCount = mainPage.clickOnMyAccountPage().clickOnLoginPage()
+    int actualProductCount = mainPage.getHeaderBlock()
+        .selectMenuItem(MenuItems.LOGIN, new LoginPage())
         .fillLoginEmailAddress("tabamfbh576@aikusy.com")
         .fillPassword("123456")
         .clickButton()
         .getDropdownComponent()
         .getChooseMonitors()
-
         .addWishListMonitorApple()
         .addWishListMonitorSamsung()
         .clickWishPageUrl()
