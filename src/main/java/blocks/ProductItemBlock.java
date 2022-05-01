@@ -8,7 +8,14 @@ import org.openqa.selenium.interactions.Actions;
 
 public class ProductItemBlock extends BasePage {
 
+  private WebElement foundProduct = null;
+
   private Actions actions;
+
+  public enum PriceParams {
+    PRICENEW, PRICEOLD, PRICETAX
+  }
+
 
   public ProductItemBlock() {
     actions = new Actions(getDriver());
@@ -29,15 +36,33 @@ public class ProductItemBlock extends BasePage {
 
   public WebElement findElementByName(String name) {
     List<WebElement> products = findElements(productItem);
-    WebElement foundProduct = null;
+
     for (WebElement product : products) {
-      if (product.getText().equals(name)) {
+      String productText = product.findElement(productName).getText();
+      if (productText.equals(name)) {
         foundProduct = product;
-      } else {
-        throw new IllegalStateException("The element not found by this name " + name);
       }
     }
     return foundProduct;
+  }
+
+  public String getPriceProduct(By priceLocator) {
+    return foundProduct.findElement(priceLocator).getText();
+  }
+
+  public String findPriceParam(PriceParams item) {
+    switch (item) {
+      case PRICENEW:
+        return getPriceProduct(priceNew);
+      case PRICEOLD:
+        return getPriceProduct(priceOld);
+      case PRICETAX:
+        return getPriceProduct(priceTax);
+      default:
+        throw new IllegalStateException("Unexpected param " + item);
+
+    }
+
   }
 
 
